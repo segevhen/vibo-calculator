@@ -1,1 +1,195 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="מחשבון מחירי משלוחים של VIBO בגליל העליון"
+  >
+
+  <title>מחשבון משלוחים | VIBO</title>
+
+  <link rel="icon" href="vibo-logo.png">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <section class="calculator-card">
+
+      <header class="site-header">
+
+        <img
+          class="vibo-logo"
+          src="vibo-logo.png"
+          alt="לוגו VIBO"
+          onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='block';"
+        >
+
+        <div class="logo-fallback" aria-hidden="true">
+          VIBO
+        </div>
+
+        <h1>מחשבון משלוחים</h1>
+
+        <p class="subtitle">
+          בחרו נקודת איסוף ונקודת מסירה וקבלו מחיר מיד
+        </p>
+
+      </header>
+
+
+      <form id="delivery-form" autocomplete="off">
+
+        <div class="form-group">
+
+          <label for="pickup-search">
+            נקודת איסוף
+          </label>
+
+          <div class="search-field">
+
+            <span class="field-icon" aria-hidden="true">●</span>
+
+            <input
+              id="pickup-search"
+              name="pickup"
+              type="search"
+              placeholder="חיפוש נקודת איסוף"
+              autocomplete="off"
+              aria-describedby="pickup-help"
+            >
+
+          </div>
+
+          <p id="pickup-help" class="field-help">
+            התחילו להקליד את שם היישוב
+          </p>
+
+          <div
+            id="pickup-options"
+            class="search-options"
+            role="listbox"
+            aria-label="נקודות איסוף"
+          ></div>
+
+        </div>
+
+
+        <div class="route-line" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="destination-search">
+            נקודת מסירה
+          </label>
+
+          <div class="search-field">
+
+            <span class="field-icon destination-icon" aria-hidden="true">●</span>
+
+            <input
+              id="destination-search"
+              name="destination"
+              type="search"
+              placeholder="חיפוש נקודת מסירה"
+              autocomplete="off"
+              disabled
+              aria-describedby="destination-help"
+            >
+
+          </div>
+
+          <p id="destination-help" class="field-help">
+            קודם בחרו נקודת איסוף
+          </p>
+
+          <div
+            id="destination-options"
+            class="search-options"
+            role="listbox"
+            aria-label="נקודות מסירה"
+          ></div>
+
+        </div>
+
+      </form>
+
+
+      <section
+        id="result-card"
+        class="result-card"
+        aria-live="polite"
+        hidden
+      >
+
+        <p class="result-label">
+          מחיר המשלוח
+        </p>
+
+        <div class="price-row">
+          <span class="currency">₪</span>
+          <strong id="delivery-price">0</strong>
+        </div>
+
+        <div class="estimated-time">
+
+          <span class="time-icon" aria-hidden="true">◷</span>
+
+          <div>
+            <span>זמן הגעה משוער</span>
+            <strong id="estimated-arrival">עד 90 דקות</strong>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <a
+        id="whatsapp-button"
+        class="whatsapp-button disabled"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-disabled="true"
+      >
+        <span class="whatsapp-symbol" aria-hidden="true">◉</span>
+        הזמן משלוח ב-WhatsApp
+      </a>
+
+
+      <button
+        id="reset-button"
+        class="reset-button"
+        type="button"
+        hidden
+      >
+        חישוב מסלול חדש
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+    VIBO משלוחים לעסקים וללקוחות פרטיים בגליל העליון
+  </footer>
+
+</body>
+</html>
