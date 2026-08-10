@@ -182,7 +182,7 @@ function calculateDelivery() {
   }
 
   const price = calculatePrice(distanceKm);
-  const arrivalTime = calculateEstimatedArrival(price);
+  const arrivalTime = "הזמנה מיידית";
 
   deliveryPrice.textContent = price;
   estimatedArrival.textContent = arrivalTime;
