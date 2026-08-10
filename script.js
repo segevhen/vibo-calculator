@@ -2,6 +2,11 @@
 
 const WHATSAPP_NUMBER = "972586543332";
 
+// ===== הגדרות תמחור - לשינוי עתידי משנים רק את שני המספרים האלה =====
+const BASE_FACTOR = 6;
+const KM_MULTIPLIER = 2.67;
+// ====================================================================
+
 const pickupInput = document.getElementById("pickup-search");
 const destinationInput = document.getElementById("destination-search");
 
@@ -22,15 +27,18 @@ let selectedPickup = "";
 let selectedDestination = "";
 
 /*
-  נתוני המחירים יגיעו מהקובץ data.js שניצור בשלב הבא.
-  המבנה הצפוי:
+  נתוני המרחקים מגיעים מהקובץ data.js.
 
+  המבנה:
   window.VIBO_ROUTES = {
     "קריית שמונה": {
-      "בית הלל": 35,
-      "כפר גלעדי": 30
+      "בית הלל": 6.943,
+      "כפר בלום": 7.563
     }
   };
+
+  הערך הוא מרחק בקילומטרים, והמחיר מחושב כאן לפי:
+  Math.ceil((BASE_FACTOR + distanceKm) * KM_MULTIPLIER)
 */
 
 function getRoutes() {
@@ -148,6 +156,12 @@ function chooseDestination(name) {
   calculateDelivery();
 }
 
+function calculatePrice(distanceKm) {
+  return Math.ceil(
+    (BASE_FACTOR + distanceKm) * KM_MULTIPLIER
+  );
+}
+
 function calculateDelivery() {
   const routes = getRoutes();
 
@@ -160,13 +174,14 @@ function calculateDelivery() {
     return;
   }
 
-  const price = routes[selectedPickup][selectedDestination];
+  const distanceKm = routes[selectedPickup][selectedDestination];
 
-  if (typeof price !== "number") {
+  if (typeof distanceKm !== "number") {
     hideResult();
     return;
   }
 
+  const price = calculatePrice(distanceKm);
   const arrivalTime = calculateEstimatedArrival(price);
 
   deliveryPrice.textContent = price;
