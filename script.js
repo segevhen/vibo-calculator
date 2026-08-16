@@ -5,6 +5,9 @@ const WHATSAPP_NUMBER = "972586543332";
 // ===== הגדרות תמחור - לשינוי עתידי משנים רק את שני המספרים האלה =====
 const BASE_FACTOR = 6;
 const KM_MULTIPLIER = 3.1;
+const INTERNAL_PRICES = {
+  "קריית שמונה": 26
+};
 // ====================================================================
 
 const pickupInput = document.getElementById("pickup-search");
@@ -174,14 +177,22 @@ function calculateDelivery() {
     return;
   }
 
-  const distanceKm = routes[selectedPickup][selectedDestination];
+const isInternalDelivery =
+  selectedPickup === selectedDestination &&
+  Object.prototype.hasOwnProperty.call(INTERNAL_PRICES, selectedPickup);
 
-  if (typeof distanceKm !== "number") {
-    hideResult();
-    return;
-  }
+const distanceKm = isInternalDelivery
+  ? 0
+  : routes[selectedPickup][selectedDestination];
 
-  const price = calculatePrice(distanceKm);
+if (typeof distanceKm !== "number") {
+  hideResult();
+  return;
+}
+
+const price = isInternalDelivery
+  ? INTERNAL_PRICES[selectedPickup]
+  : calculatePrice(distanceKm);
   const arrivalTime = "הזמנה מיידית";
 
   deliveryPrice.textContent = price;
