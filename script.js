@@ -4,7 +4,7 @@ const WHATSAPP_NUMBER = "972586543332";
 
 // ===== הגדרות תמחור - לשינוי עתידי משנים רק את שני המספרים האלה =====
 const BASE_FACTOR = 6;
-const KM_MULTIPLIER = 2.67;
+const KM_MULTIPLIER = 3;
 // ====================================================================
 
 const pickupInput = document.getElementById("pickup-search");
